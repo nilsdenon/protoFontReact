@@ -1,3 +1,4 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../../assets/scss/variables';
 
 .is-open {
@@ -16,6 +17,7 @@
 .fontblock {
     display: flex;
     position: relative;
+    min-height: 550px;
     //overflow:hidden;
     &__body {
         //margin-right: 3rem;
@@ -43,7 +45,7 @@
 
         opacity: 0;
         transition: transform 0.55s ease-in-out, opacity 0.55s ease-in-out;
-        position: fixed;
+        position: absolute;
         overflow: auto;
         top: 0;
         right: 0;

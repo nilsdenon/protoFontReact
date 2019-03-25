@@ -116,5 +116,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "bootstrap": "^4.3.1"
   }
 }
