@@ -6,6 +6,7 @@ export default class FontBlockComponent extends React.Component {
     constructor() {
         super();
         this.state = {
+            // Als Zufallswert soll das Fontblock Menü immer sichtbar sein!
             active: true
         };
         this.handleToggleMenu = this.handleToggleMenu.bind(this);
