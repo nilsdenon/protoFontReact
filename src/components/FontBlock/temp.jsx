@@ -18,7 +18,7 @@ class  extends Component {
 }
  
 export default ;
-
+className={ this.state.condition ? "button toggled" : "button" }
 <FontBlockComponent
 {...this.props}
 key={idx}

@@ -10,7 +10,6 @@ export default class FontBlock extends React.Component {
         this.state = {
             primaryText: 'Hello my name is',
             secondaryText: 'Damien Pierre',
-            active: false,
             blocks: [
                 {
                     primaryText: 'Hello my name is',
@@ -18,7 +17,6 @@ export default class FontBlock extends React.Component {
                 }
             ]
         };
-        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handlePrimaryFontblockNameChange = idx => evt => {
@@ -57,12 +55,6 @@ export default class FontBlock extends React.Component {
     handleRemoveFontblock = idx => () => {
         this.setState({
             blocks: this.state.blocks.filter((s, sidx) => idx !== sidx)
-        });
-    };
-
-    handleToggleMenu = () => {
-        this.setState({
-            active: !this.state.active
         });
     };
 

@@ -1,30 +1,21 @@
 import React from 'react';
 
 import FontBlockText from './FontBlockInputText';
-/*{
-    idx,
-    primaryText,
-    secondaryText,
-    handlePrimaryFontblockNameChange,
-    handleSecondaryFontblockNameChange,
-    length,
-    handleRemoveFontblock
-}*/
 
 export default class FontBlockComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            primaryText: 'Hello my name is',
-            secondaryText: 'Damien Pierre',
-            blocks: [
-                {
-                    primaryText: 'Hello my name is',
-                    secondaryText: 'Damien Pierre'
-                }
-            ]
+            active: true
         };
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
+
+    handleToggleMenu = () => {
+        this.setState({
+            active: !this.state.active
+        });
+    };
 
     handlePrimaryFontblockNameChange = idx => evt => {
         const newblocks = this.state.blocks.map((fontblock, sidx) => {
@@ -42,9 +33,15 @@ export default class FontBlockComponent extends React.Component {
         return (
             <div
                 id={`fontblock-${this.props.id + 1}`}
-                className="fontblock is-open"
+                className={
+                    this.state.active ? 'fontblock is-open' : 'fontblock'
+                }
             >
-                <button className="burger-menu">
+                <button
+                    className={`burger-menu ${this.state.active &&
+                        'is-active'}`}
+                    onClick={this.handleToggleMenu}
+                >
                     <div className="burger-menu-inner">
                         <span />
                         <span />
