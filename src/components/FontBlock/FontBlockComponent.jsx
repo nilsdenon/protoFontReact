@@ -83,6 +83,7 @@ export default class FontBlockComponent extends React.Component {
                                         defaultValue={this.props.primaryText}
                                     />
                                 </div>
+                                <div className="form-group">slider here</div>
                             </fieldset>
                             <fieldset className="sep" id="subform__bodytext">
                                 <legend>Body Text</legend>
