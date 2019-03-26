@@ -11,7 +11,7 @@ export default class App extends Component {
     render() {
         return (
             <>
-                <Header branding="proto" claim="Font" />
+                <Header branding="proto" claim="Font" version="[React]" />
                 <FontBlock />
             </>
         );

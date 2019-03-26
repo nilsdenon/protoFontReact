@@ -10,6 +10,11 @@ class Header extends Component {
                         {this.props.branding}
                     </span>
                     <span className="branding__claim">{this.props.claim}</span>
+                    {this.props.version && (
+                        <span className="branding__version">
+                            {this.props.version}
+                        </span>
+                    )}
                 </div>
             </header>
         );
