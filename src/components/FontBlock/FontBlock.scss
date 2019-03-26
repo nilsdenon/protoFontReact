@@ -18,7 +18,12 @@
     display: flex;
     position: relative;
     min-height: 550px;
-    //overflow:hidden;
+    overflow: hidden;
+    .burger-menu {
+        position: absolute;
+        right: 0;
+        z-index: 10;
+    }
     &__body {
         //margin-right: 3rem;
         //width: calc(100% - 340px);

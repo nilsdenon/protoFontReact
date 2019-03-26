@@ -1,3 +1,5 @@
+//import FontBlockComponent from './FontBlockComponent';
+import FontBlockText from './FontBlockInputText';
 import React from 'react';
 
 import './FontBlock.scss';
@@ -7,6 +9,7 @@ export default class FontBlock extends React.Component {
         super();
         this.state = {
             primaryText: 'Hello my name is',
+            secondaryText: 'Damien Pierre',
             blocks: [
                 {
                     primaryText: 'Hello my name is',
@@ -49,7 +52,6 @@ export default class FontBlock extends React.Component {
             ])
         });
     };
-
     handleRemoveFontblock = idx => () => {
         this.setState({
             blocks: this.state.blocks.filter((s, sidx) => idx !== sidx)
@@ -61,47 +63,22 @@ export default class FontBlock extends React.Component {
             <div>
                 {this.state.blocks.map((fontblock, idx) => (
                     <div key={idx} className="fontblock is-open">
+                        <button className="burger-menu">
+                            <div className="burger-menu-inner">
+                                <span />
+                                <span />
+                                <span />
+                            </div>
+                        </button>
                         <section className="fontblock__body">
-                            <div className="fontblock__headline">
-                                <div className="font-container">
-                                    <div className="font font-primary">
-                                        {fontblock.primaryText}
-                                    </div>
-                                    <dl className="hud hud--fontdetails">
-                                        <dt>Font Family</dt>
-                                        <dd className="hud-fontName">test</dd>
-                                        <dt>Font Size</dt>
-                                        <dd className="hud-fontSize">test</dd>
-                                        <dt>Letter-Spacing</dt>
-                                        <dd className="hud-letterSpacing">
-                                            test
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
-                            <div className="fontblock__bodytext">
-                                <div className="font-container">
-                                    <div
-                                        id="font_1_2"
-                                        className="font font-secondary"
-                                    >
-                                        {fontblock.secondaryText}
-                                    </div>
-                                    <dl
-                                        id="hud_1_2"
-                                        className="hud_1_2 hud hud--fontdetails"
-                                    >
-                                        <dt>Font Family</dt>
-                                        <dd className="hud-fontName">test</dd>
-                                        <dt>Font Size</dt>
-                                        <dd className="hud-fontSize">test</dd>
-                                        <dt>Letter-Spacing</dt>
-                                        <dd className="hud-letterSpacing">
-                                            test
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
+                            <FontBlockText
+                                blockname={'headline'}
+                                text={fontblock.primaryText}
+                            />
+                            <FontBlockText
+                                blockname={'bodytext'}
+                                text={fontblock.secondaryText}
+                            />
                         </section>
                         <aside className="fontblock__menu">
                             <nav className="fontblock__nav">
@@ -149,25 +126,32 @@ export default class FontBlock extends React.Component {
                                         </div>
                                     </fieldset>
                                 </form>
+                                {this.state.blocks.length > 1 ? (
+                                    <div className="form-group">
+                                        <button
+                                            type="button"
+                                            onClick={this.handleRemoveFontblock(
+                                                idx
+                                            )}
+                                            className="small btn btn-danger btn-sm"
+                                        >
+                                            Remove Fontblock -
+                                        </button>
+                                    </div>
+                                ) : null}
                             </nav>
                         </aside>
-
-                        <button
-                            type="button"
-                            onClick={this.handleRemoveFontblock(idx)}
-                            className="small"
-                        >
-                            -
-                        </button>
                     </div>
                 ))}
-                <button
-                    type="button"
-                    onClick={this.handleAddFontblock}
-                    className="small"
-                >
-                    Add Fontblock
-                </button>
+                {this.state.blocks.length >= 1 ? (
+                    <button
+                        type="button"
+                        onClick={this.handleAddFontblock}
+                        className="btn btn-sm btn-primary"
+                    >
+                        Add Fontblock
+                    </button>
+                ) : null}
             </div>
         );
     }

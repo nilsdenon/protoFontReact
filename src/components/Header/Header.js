@@ -11,13 +11,6 @@ class Header extends Component {
                     </span>
                     <span className="branding__claim">{this.props.claim}</span>
                 </div>
-                <button id="burger" className="burger-menu">
-                    <div className="burger-menu-inner">
-                        <span />
-                        <span />
-                        <span />
-                    </div>
-                </button>
             </header>
         );
     }
