@@ -1,5 +1,4 @@
 import FontBlockComponent from './FontBlockComponent';
-//import FontBlockText from './FontBlockInputText';
 import React from 'react';
 
 import './FontBlock.scss';
@@ -52,6 +51,13 @@ export default class FontBlock extends React.Component {
             ])
         });
     };
+
+    handleRemoveSingleFontBlock = () => {
+        this.setState({
+            blocks: this.state.blocks.slice(0, -1)
+        });
+    };
+
     handleRemoveFontblock = idx => () => {
         this.setState({
             blocks: this.state.blocks.filter((s, sidx) => idx !== sidx)
@@ -74,18 +80,41 @@ export default class FontBlock extends React.Component {
                         handleSecondaryFontblockNameChange={this.handleSecondaryFontblockNameChange(
                             idx
                         )}
-                        handleRemoveFontblock={this.handleRemoveFontblock(idx)}
+                        deleteButton={
+                            this.state.blocks.length > 1 && (
+                                <div className="form-group">
+                                    <button
+                                        type="button"
+                                        onClick={this.handleRemoveFontblock(
+                                            idx
+                                        )}
+                                        className="small btn btn-danger btn-sm"
+                                    >
+                                        Remove this Fontblock -
+                                    </button>
+                                </div>
+                            )
+                        }
                     />
                 ))}
-                {this.state.blocks.length >= 1 ? (
+                <nav className="nav-bottom-controls">
                     <button
                         type="button"
                         onClick={this.handleAddFontblock}
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm btn-success"
                     >
                         Add Fontblock
                     </button>
-                ) : null}
+                    {this.state.blocks.length > 1 && (
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-danger"
+                            onClick={this.handleRemoveSingleFontBlock}
+                        >
+                            Remove Last Block
+                        </button>
+                    )}
+                </nav>
             </div>
         );
     }

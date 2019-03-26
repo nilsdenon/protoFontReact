@@ -38,8 +38,11 @@ export default class FontBlockComponent extends React.Component {
                 }
             >
                 <button
-                    className={`burger-menu ${this.state.active &&
-                        'is-active'}`}
+                    className={
+                        this.state.active
+                            ? 'burger-menu is-active'
+                            : 'burger-menu'
+                    }
                     onClick={this.handleToggleMenu}
                 >
                     <div className="burger-menu-inner">
@@ -96,15 +99,7 @@ export default class FontBlockComponent extends React.Component {
                                 </div>
                             </fieldset>
                         </form>
-                        <div className="form-group">
-                            <button
-                                type="button"
-                                onClick={this.props.handleRemoveFontblock}
-                                className="small btn btn-danger btn-sm"
-                            >
-                                Remove Fontblock -
-                            </button>
-                        </div>
+                        {this.props.deleteButton}
                     </nav>
                 </aside>
             </div>
