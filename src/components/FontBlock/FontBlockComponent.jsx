@@ -75,9 +75,10 @@ export default class FontBlockComponent extends React.Component {
                                         className="custom-textarea"
                                         placeholder={`Primary Text #${this.props
                                             .idx + 1}`}
-                                        onChange={this.props.handlePrimaryFontblockNameChange(
-                                            this.props.idx
-                                        )}
+                                        onChange={
+                                            this.props
+                                                .handlePrimaryFontblockNameChange
+                                        }
                                         defaultValue={this.props.primaryText}
                                     />
                                 </div>
@@ -89,9 +90,10 @@ export default class FontBlockComponent extends React.Component {
                                         className="custom-textarea"
                                         placeholder={`Secondary Text #${this
                                             .props.idx + 2}`}
-                                        onChange={this.props.handleSecondaryFontblockNameChange(
-                                            this.props.idx
-                                        )}
+                                        onChange={
+                                            this.props
+                                                .handleSecondaryFontblockNameChange
+                                        }
                                         defaultValue={this.props.secondaryText}
                                     />
                                 </div>
@@ -100,9 +102,7 @@ export default class FontBlockComponent extends React.Component {
                         <div className="form-group">
                             <button
                                 type="button"
-                                onClick={this.props.handleRemoveFontblock(
-                                    this.props.idx
-                                )}
+                                onClick={this.props.handleRemoveFontblock}
                                 className="small btn btn-danger btn-sm"
                             >
                                 Remove Fontblock -
