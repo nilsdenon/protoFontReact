@@ -56,7 +56,7 @@ export default class FontBlockComponent extends React.Component {
                         letterSpacing={this.state.primaryFontletterSpacing}
                     />
                     <FontBlockText
-                        className={`apply-font-secondary${this.props.id + 2}`}
+                        className={`apply-font-secondary${this.props.id + 1}`}
                         blockname={'bodytext'}
                         text={this.props.secondaryText}
                         fontSize={this.state.secondaryFontValues}
@@ -87,7 +87,8 @@ export default class FontBlockComponent extends React.Component {
                                     apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
                                     activeFont={this.state.activeFontPrimary}
                                     options={{
-                                        name: 'primary' + (this.props.id + 1)
+                                        name: 'primary' + (this.props.id + 1),
+                                        variants: ['regular', '700']
                                     }}
                                     onChange={nextFont =>
                                         this.setState({
@@ -140,7 +141,7 @@ export default class FontBlockComponent extends React.Component {
                                     apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
                                     activeFont={this.state.activeFontSecondary}
                                     options={{
-                                        name: 'secondary' + (this.props.id + 2)
+                                        name: 'secondary' + (this.props.id + 1)
                                     }}
                                     onChange={nextFont =>
                                         this.setState({
