@@ -9,7 +9,12 @@ export default class FontBlockText extends React.Component {
         return (
             <div className={`"fontblock__${this.props.blockname}"`}>
                 <div className="font-container">
-                    <div className="font font-secondary" style={fontStyles}>
+                    <div
+                        className={`font font-secondary ${
+                            this.props.className
+                        }`}
+                        style={fontStyles}
+                    >
                         {this.props.text}
                     </div>
                     <dl id="hud_1_2" className="hud_1_2 hud hud--fontdetails">

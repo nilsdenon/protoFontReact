@@ -1,12 +1,15 @@
 import React from 'react';
 import FontBlockText from './FontBlockInputText';
 import CustomRangeSliderLabeled from './customRangeSliderLabeled';
+import FontPicker from 'font-picker-react';
 
 export default class FontBlockComponent extends React.Component {
     constructor() {
         super();
         this.state = {
             // Als Zufallswert soll das Fontblock Menü immer sichtbar sein!
+            activeFontPrimary: 'Open Sans',
+            activeFontSecondary: 'Source Sans Pro',
             active: true,
             primaryFontValues: [24],
             primaryFontletterSpacing: [1],
@@ -46,12 +49,14 @@ export default class FontBlockComponent extends React.Component {
                 </button>
                 <section className="fontblock__body">
                     <FontBlockText
+                        className={`apply-font-primary${this.props.id + 1}`}
                         blockname={'headline'}
                         text={this.props.primaryText}
                         fontSize={this.state.primaryFontValues}
                         letterSpacing={this.state.primaryFontletterSpacing}
                     />
                     <FontBlockText
+                        className={`apply-font-secondary${this.props.id + 2}`}
                         blockname={'bodytext'}
                         text={this.props.secondaryText}
                         fontSize={this.state.secondaryFontValues}
@@ -72,6 +77,23 @@ export default class FontBlockComponent extends React.Component {
                                             .handlePrimaryFontblockNameChange
                                     }
                                     defaultValue={this.props.primaryText}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">
+                                    Font-family
+                                </label>
+                                <FontPicker
+                                    apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
+                                    activeFont={this.state.activeFontPrimary}
+                                    options={{
+                                        name: 'primary' + (this.props.id + 1)
+                                    }}
+                                    onChange={nextFont =>
+                                        this.setState({
+                                            activeFontPrimary: nextFont.family
+                                        })
+                                    }
                                 />
                             </div>
 
@@ -110,6 +132,24 @@ export default class FontBlockComponent extends React.Component {
                                     defaultValue={this.props.secondaryText}
                                 />
                             </div>
+                            <div className="form-group">
+                                <label className="form-label">
+                                    Font-family
+                                </label>
+                                <FontPicker
+                                    apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
+                                    activeFont={this.state.activeFontSecondary}
+                                    options={{
+                                        name: 'secondary' + (this.props.id + 2)
+                                    }}
+                                    onChange={nextFont =>
+                                        this.setState({
+                                            activeFontSecondary: nextFont.family
+                                        })
+                                    }
+                                />
+                            </div>
+
                             <div className="form-group">
                                 <CustomRangeSliderLabeled
                                     label="Font-size"
