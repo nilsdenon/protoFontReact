@@ -3,6 +3,9 @@ import FontBlockText from './FontBlockInputText';
 import CustomRangeSliderLabeled from './customRangeSliderLabeled';
 import FontPicker from 'font-picker-react';
 
+import reactCSS from 'reactcss';
+import { SketchPicker } from 'react-color';
+
 export default class FontBlockComponent extends React.Component {
     constructor() {
         super();
@@ -14,10 +17,31 @@ export default class FontBlockComponent extends React.Component {
             primaryFontValues: [24],
             primaryFontletterSpacing: [1],
             secondaryFontValues: [16],
-            secondaryFontLetterSpacing: [1]
+            secondaryFontLetterSpacing: [1],
+            primaryFontColorPicker: false,
+            primaryFontColor: '#333',
+            secondaryFontColor: '#4e4e4e',
+            secondaryFontColorPicker: false
         };
         //this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
+    handleTogglePrimaryColorPicker = () => {
+        this.setState({
+            primaryFontColorPicker: !this.state.primaryFontColorPicker
+        });
+    };
+
+    handleClosePrimaryColorPicker = () => {
+        this.setState({ primaryFontColorPicker: false });
+    };
+
+    handlePrimaryFontColor = color => {
+        this.setState({ primaryFontColor: color.hex });
+    };
+
+    handleSecondaryFontColor = color => {
+        this.setState({ secondaryFontColor: color.hex });
+    };
 
     handleToggleMenu = () => {
         this.setState({
@@ -26,6 +50,34 @@ export default class FontBlockComponent extends React.Component {
     };
 
     render() {
+        const styles = reactCSS({
+            default: {
+                color: {
+                    width: '36px',
+                    height: '14px',
+                    borderRadius: '2px'
+                },
+                swatch: {
+                    padding: '5px',
+                    background: '#fff',
+                    borderRadius: '1px',
+                    boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+                    display: 'inline-block',
+                    cursor: 'pointer'
+                },
+                popover: {
+                    position: 'absolute',
+                    zIndex: '2'
+                },
+                cover: {
+                    position: 'fixed',
+                    top: '0px',
+                    right: '0px',
+                    bottom: '0px',
+                    left: '0px'
+                }
+            }
+        });
         return (
             <div
                 id={`fontblock-${this.props.id + 1}`}
@@ -54,6 +106,7 @@ export default class FontBlockComponent extends React.Component {
                         text={this.props.primaryText}
                         fontSize={this.state.primaryFontValues}
                         letterSpacing={this.state.primaryFontletterSpacing}
+                        color={this.state.primaryFontColor}
                     />
                     <FontBlockText
                         className={`apply-font-secondary${this.props.id + 1}`}
@@ -61,6 +114,7 @@ export default class FontBlockComponent extends React.Component {
                         text={this.props.secondaryText}
                         fontSize={this.state.secondaryFontValues}
                         letterSpacing={this.state.secondaryFontLetterSpacing}
+                        color={this.state.secondaryFontColor}
                     />
                 </section>
                 <aside className="fontblock__menu">
@@ -96,6 +150,36 @@ export default class FontBlockComponent extends React.Component {
                                         })
                                     }
                                 />
+                                <div className="colorPicker">
+                                    <div
+                                        style={styles.swatch}
+                                        onClick={
+                                            this.handleTogglePrimaryColorPicker
+                                        }
+                                    >
+                                        <div style={styles.color} />
+                                    </div>
+                                    {this.state.primaryFontColorPicker && (
+                                        <div style={styles.popover}>
+                                            <div
+                                                style={styles.cover}
+                                                onClick={
+                                                    this
+                                                        .handleClosePrimaryColorPicker
+                                                }
+                                            />
+                                            <SketchPicker
+                                                color={
+                                                    this.state.primaryFontColor
+                                                }
+                                                onChange={
+                                                    this.handlePrimaryFontColor
+                                                }
+                                                disableAlpha
+                                            />
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             <CustomRangeSliderLabeled
@@ -149,6 +233,15 @@ export default class FontBlockComponent extends React.Component {
                                         })
                                     }
                                 />
+                                <div className="colorPicker">
+                                    <SketchPicker
+                                        color={this.state.secondaryFontColor}
+                                        onChangeComplete={
+                                            this.handleSecondaryFontColor
+                                        }
+                                        disableAlpha
+                                    />
+                                </div>
                             </div>
 
                             <div className="form-group">

@@ -4,7 +4,8 @@ export default class FontBlockText extends React.Component {
     render() {
         const fontStyles = {
             fontSize: this.props.fontSize + 'px',
-            letterSpacing: this.props.letterSpacing + 'px'
+            letterSpacing: this.props.letterSpacing + 'px',
+            color: this.props.color
         };
         return (
             <div className={`"fontblock__${this.props.blockname}"`}>

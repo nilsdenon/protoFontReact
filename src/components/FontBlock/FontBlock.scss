@@ -17,7 +17,7 @@
 .fontblock {
     display: flex;
     position: relative;
-    min-height: 550px;
+    min-height: 824px;
     overflow: hidden;
     border-bottom: 1px solid $c-default;
     &:first-of-type {
@@ -278,7 +278,7 @@ $dist: $track-w - $thumb-d;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0.2em 0.8em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0.2em 0.8em;
 }
 .custom-range-slider {
     > div:first-child {
@@ -290,4 +290,28 @@ $dist: $track-w - $thumb-d;
 }
 .custom-textarea {
     min-height: 85px;
+}
+div[id^='font-picker'] {
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    color: $c-default;
+}
+div[id^='font-picker'] .dropdown-button {
+    background: white;
+    transition: 0.25s ease-in-out background;
+    border: 1px solid #ccc;
+    &:hover {
+        background: #eeeeee;
+    }
+    &:focus {
+        background: #ececec;
+    }
+}
+div[id^='font-picker'] ul.expanded {
+    background: white;
+}
+div[id^='font-picker'] ul li button.active-font {
+    background: #008cff;
+    color: white;
 }
