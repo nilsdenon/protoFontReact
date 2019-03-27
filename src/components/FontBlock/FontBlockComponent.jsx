@@ -3,8 +3,6 @@ import FontBlockText from './FontBlockInputText';
 import CustomRangeSliderLabeled from './customRangeSliderLabeled';
 import FontPicker from 'font-picker-react';
 
-import reactCSS from 'reactcss';
-import { SketchPicker } from 'react-color';
 import CustomColorPicker from './components/CustomColorPicker/CustomColorPicker';
 
 export default class FontBlockComponent extends React.Component {
@@ -12,10 +10,10 @@ export default class FontBlockComponent extends React.Component {
         super();
         this.state = {
             // Als Zufallswert soll das Fontblock Menü immer sichtbar sein!
-            activeFontPrimary: 'Open Sans',
+            activeFontPrimary: 'Space Mono',
             activeFontSecondary: 'Source Sans Pro',
             active: true,
-            primaryFontValues: [24],
+            primaryFontValues: [40],
             primaryFontletterSpacing: [1],
             secondaryFontValues: [16],
             secondaryFontLetterSpacing: [1],
@@ -40,6 +38,16 @@ export default class FontBlockComponent extends React.Component {
         this.setState({ primaryFontColor: color.hex });
     };
 
+    handleToggleSecondaryColorPicker = () => {
+        this.setState({
+            secondaryFontColorPicker: !this.state.secondaryFontColorPicker
+        });
+    };
+
+    handleCloseSecondaryColorPicker = () => {
+        this.setState({ secondaryFontColorPicker: false });
+    };
+
     handleSecondaryFontColor = color => {
         this.setState({ secondaryFontColor: color.hex });
     };
@@ -51,27 +59,6 @@ export default class FontBlockComponent extends React.Component {
     };
 
     render() {
-        const styles = reactCSS({
-            default: {
-                color: {
-                    width: '36px',
-                    height: '14px',
-                    borderRadius: '2px'
-                },
-
-                popover: {
-                    position: 'absolute',
-                    zIndex: '2'
-                },
-                cover: {
-                    position: 'fixed',
-                    top: '0px',
-                    right: '0px',
-                    bottom: '0px',
-                    left: '0px'
-                }
-            }
-        });
         return (
             <div
                 id={`fontblock-${this.props.id + 1}`}
@@ -131,37 +118,38 @@ export default class FontBlockComponent extends React.Component {
                                 <label className="form-label">
                                     Font-family
                                 </label>
-                                <FontPicker
-                                    apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
-                                    activeFont={this.state.activeFontPrimary}
-                                    options={{
-                                        name: 'primary' + (this.props.id + 1),
-                                        variants: ['regular', '700']
-                                    }}
-                                    onChange={nextFont =>
-                                        this.setState({
-                                            activeFontPrimary: nextFont.family
-                                        })
-                                    }
-                                />
-                                <CustomColorPicker
-                                    handleTogglePrimaryColorPicker={
-                                        this.handleTogglePrimaryColorPicker
-                                    }
-                                    primaryFontColorPicker={
-                                        this.state.primaryFontColorPicker
-                                    }
-                                    handleClosePrimaryColorPicker={
-                                        this.handleClosePrimaryColorPicker
-                                    }
-                                    primaryFontColor={
-                                        this.state.primaryFontColor
-                                    }
-                                    handlePrimaryFontColor={
-                                        this.handlePrimaryFontColor
-                                    }
-                                    styles={styles}
-                                />
+                                <div className="group-pickers">
+                                    <FontPicker
+                                        apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
+                                        activeFont={
+                                            this.state.activeFontPrimary
+                                        }
+                                        options={{
+                                            name:
+                                                'primary' + (this.props.id + 1)
+                                        }}
+                                        onChange={nextFont =>
+                                            this.setState({
+                                                activeFontPrimary:
+                                                    nextFont.family
+                                            })
+                                        }
+                                    />
+                                    <CustomColorPicker
+                                        bg={this.state.primaryFontColor}
+                                        toggle={
+                                            this.handleTogglePrimaryColorPicker
+                                        }
+                                        picker={
+                                            this.state.primaryFontColorPicker
+                                        }
+                                        close={
+                                            this.handleClosePrimaryColorPicker
+                                        }
+                                        color={this.state.primaryFontColor}
+                                        change={this.handlePrimaryFontColor}
+                                    />
+                                </div>
                             </div>
 
                             <CustomRangeSliderLabeled
@@ -203,25 +191,38 @@ export default class FontBlockComponent extends React.Component {
                                 <label className="form-label">
                                     Font-family
                                 </label>
-                                <FontPicker
-                                    apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
-                                    activeFont={this.state.activeFontSecondary}
-                                    options={{
-                                        name: 'secondary' + (this.props.id + 1)
-                                    }}
-                                    onChange={nextFont =>
-                                        this.setState({
-                                            activeFontSecondary: nextFont.family
-                                        })
-                                    }
-                                />
-                                <div className="colorPicker">
-                                    <SketchPicker
-                                        color={this.state.secondaryFontColor}
-                                        onChangeComplete={
-                                            this.handleSecondaryFontColor
+                                <div className="group-pickers">
+                                    <FontPicker
+                                        apiKey="AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc"
+                                        activeFont={
+                                            this.state.activeFontSecondary
                                         }
-                                        disableAlpha
+                                        options={{
+                                            name:
+                                                'secondary' +
+                                                (this.props.id + 1)
+                                        }}
+                                        onChange={nextFont =>
+                                            this.setState({
+                                                activeFontSecondary:
+                                                    nextFont.family
+                                            })
+                                        }
+                                    />
+                                    <CustomColorPicker
+                                        bg={this.state.secondaryFontColor}
+                                        toggle={
+                                            this
+                                                .handleToggleSecondaryColorPicker
+                                        }
+                                        picker={
+                                            this.state.secondaryFontColorPicker
+                                        }
+                                        close={
+                                            this.handleCloseSecondaryColorPicker
+                                        }
+                                        color={this.state.secondaryFontColor}
+                                        change={this.handleSecondaryFontColor}
                                     />
                                 </div>
                             </div>

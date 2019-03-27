@@ -65,6 +65,30 @@
     &__nav {
         padding: 2rem;
     }
+    div[id^='font-picker'] {
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        color: $c-default;
+    }
+    div[id^='font-picker'] .dropdown-button {
+        background: white;
+        transition: 0.25s ease-in-out background;
+        border: 1px solid #ccc;
+        &:hover {
+            background: #eeeeee;
+        }
+        &:focus {
+            background: #ececec;
+        }
+    }
+    div[id^='font-picker'] ul.expanded {
+        background: white;
+    }
+    div[id^='font-picker'] ul li button.active-font {
+        background: #008cff;
+        color: white;
+    }
 }
 
 .font {
@@ -118,20 +142,6 @@ input[type='range'] {
         border-width: 0;
         padding: 0;
     }
-}
-.color-box {
-    display: block;
-    margin-left: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: $c-default;
-    box-shadow: 0 2px 3px #ccc;
-    //transition: background-color .65s ease;
-}
-.jscolor {
-    background-color: transparent !important;
-    color: $c-default !important;
 }
 
 fieldset {
@@ -291,27 +301,41 @@ $dist: $track-w - $thumb-d;
 .custom-textarea {
     min-height: 85px;
 }
-div[id^='font-picker'] {
-    width: 100%;
-    box-shadow: none;
-    border: none;
-    color: $c-default;
+.group-pickers {
+    display: flex;
+    margin-top: 5px;
 }
-div[id^='font-picker'] .dropdown-button {
-    background: white;
-    transition: 0.25s ease-in-out background;
-    border: 1px solid #ccc;
-    &:hover {
-        background: #eeeeee;
+.color-picker {
+    position: relative;
+    &-swatch {
+        padding: 5px;
+        background: #fff;
+        border-radius: 1px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        cursor: pointer;
     }
-    &:focus {
-        background: #ececec;
+    &-popover {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        top: 60px;
+    }
+    &-cover {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
 }
-div[id^='font-picker'] ul.expanded {
-    background: white;
-}
-div[id^='font-picker'] ul li button.active-font {
-    background: #008cff;
-    color: white;
+.color-box {
+    display: block;
+    margin-left: 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: $c-default;
+    box-shadow: 0 2px 3px #ccc;
+    cursor: pointer;
 }
