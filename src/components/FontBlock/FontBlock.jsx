@@ -75,6 +75,7 @@ export default class FontBlock extends React.Component {
                 {this.state.blocks.map((fontblock, idx) => (
                     <FontBlockComponent
                         {...this.props}
+                        key={idx}
                         id={idx}
                         primaryText={fontblock.primaryText}
                         secondaryText={fontblock.secondaryText}

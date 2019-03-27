@@ -1,16 +1,22 @@
 import React from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
-const STEP = 0.1;
-const MIN = 6;
-const MAX = 340;
-
 export default class CustomRangeSliderLabeled extends React.Component {
     render() {
-        const { step, min, max, values, handleChangeValues } = this.props;
-
+        const {
+            label,
+            step,
+            min,
+            max,
+            values,
+            handleChangeValues
+        } = this.props;
+        const MIN = min;
+        const MAX = max;
         return (
-            <div className="custom-range-slider">
+            <div className="form-group">
+                {label && <label className="form-label">{label}</label>}
+
                 <Range
                     step={step}
                     min={min}

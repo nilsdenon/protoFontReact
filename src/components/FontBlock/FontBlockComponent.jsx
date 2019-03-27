@@ -8,8 +8,10 @@ export default class FontBlockComponent extends React.Component {
         this.state = {
             // Als Zufallswert soll das Fontblock Menü immer sichtbar sein!
             active: true,
-            primaryFontValues: [50],
-            secondaryFontValues: [50]
+            primaryFontValues: [24],
+            primaryFontletterSpacing: [1],
+            secondaryFontValues: [16],
+            secondaryFontLetterSpacing: [1]
         };
         //this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
@@ -47,78 +49,97 @@ export default class FontBlockComponent extends React.Component {
                         blockname={'headline'}
                         text={this.props.primaryText}
                         fontSize={this.state.primaryFontValues}
+                        letterSpacing={this.state.primaryFontletterSpacing}
                     />
                     <FontBlockText
                         blockname={'bodytext'}
                         text={this.props.secondaryText}
                         fontSize={this.state.secondaryFontValues}
+                        letterSpacing={this.state.secondaryFontLetterSpacing}
                     />
                 </section>
                 <aside className="fontblock__menu">
                     <nav className="fontblock__nav">
-                        <form
-                            name="fontblock_form_1"
-                            className="fontblock__form"
-                            action=""
-                        >
-                            <fieldset className="sep" id="subform__headline">
-                                <legend>Headline</legend>
-                                <div className="form-group">
-                                    <textarea
-                                        className="custom-textarea"
-                                        placeholder={`Primary Text #${this.props
-                                            .idx + 1}`}
-                                        onChange={
-                                            this.props
-                                                .handlePrimaryFontblockNameChange
-                                        }
-                                        defaultValue={this.props.primaryText}
-                                    />
-                                </div>
+                        <fieldset className="se fontblock__form">
+                            <legend>Headline</legend>
+                            <div className="form-group">
+                                <textarea
+                                    className="custom-textarea"
+                                    placeholder={`Primary Text #${this.props
+                                        .idx + 1}`}
+                                    onChange={
+                                        this.props
+                                            .handlePrimaryFontblockNameChange
+                                    }
+                                    defaultValue={this.props.primaryText}
+                                />
+                            </div>
 
-                                <div className="form-group">
-                                    <CustomRangeSliderLabeled
-                                        className="custom-rs"
-                                        step={1}
-                                        min={6}
-                                        max={340}
-                                        values={this.state.primaryFontValues}
-                                        handleChangeValues={primaryFontValues =>
-                                            this.setState({ primaryFontValues })
-                                        }
-                                    />
-                                </div>
-                            </fieldset>
-                            <fieldset className="sep" id="subform__bodytext">
-                                <legend>Body Text</legend>
-                                <div className="form-group">
-                                    <textarea
-                                        className="custom-textarea"
-                                        placeholder={`Secondary Text #${this
-                                            .props.idx + 2}`}
-                                        onChange={
-                                            this.props
-                                                .handleSecondaryFontblockNameChange
-                                        }
-                                        defaultValue={this.props.secondaryText}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <CustomRangeSliderLabeled
-                                        className="custom-rs"
-                                        step={1}
-                                        min={6}
-                                        max={340}
-                                        values={this.state.secondaryFontValues}
-                                        handleChangeValues={secondaryFontValues =>
-                                            this.setState({
-                                                secondaryFontValues
-                                            })
-                                        }
-                                    />
-                                </div>
-                            </fieldset>
-                        </form>
+                            <CustomRangeSliderLabeled
+                                label="Font-size"
+                                step={1}
+                                min={6}
+                                max={340}
+                                values={this.state.primaryFontValues}
+                                handleChangeValues={primaryFontValues =>
+                                    this.setState({ primaryFontValues })
+                                }
+                            />
+                            <CustomRangeSliderLabeled
+                                label="Letter-spacing"
+                                step={0.005}
+                                min={-50}
+                                max={150}
+                                values={this.state.primaryFontletterSpacing}
+                                handleChangeValues={primaryFontletterSpacing =>
+                                    this.setState({ primaryFontletterSpacing })
+                                }
+                            />
+                        </fieldset>
+                        <fieldset className="sep fontblock__form">
+                            <legend>Body Text</legend>
+                            <div className="form-group">
+                                <textarea
+                                    className="custom-textarea"
+                                    placeholder={`Secondary Text #${this.props
+                                        .idx + 2}`}
+                                    onChange={
+                                        this.props
+                                            .handleSecondaryFontblockNameChange
+                                    }
+                                    defaultValue={this.props.secondaryText}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <CustomRangeSliderLabeled
+                                    label="Font-size"
+                                    step={1}
+                                    min={6}
+                                    max={340}
+                                    values={this.state.secondaryFontValues}
+                                    handleChangeValues={secondaryFontValues =>
+                                        this.setState({
+                                            secondaryFontValues
+                                        })
+                                    }
+                                />
+                                <CustomRangeSliderLabeled
+                                    label="Letter-spacing"
+                                    step={0.005}
+                                    min={-50}
+                                    max={150}
+                                    values={
+                                        this.state.secondaryFontLetterSpacing
+                                    }
+                                    handleChangeValues={secondaryFontLetterSpacing =>
+                                        this.setState({
+                                            secondaryFontLetterSpacing
+                                        })
+                                    }
+                                />
+                            </div>
+                        </fieldset>
+
                         {this.props.deleteButton}
                     </nav>
                 </aside>
