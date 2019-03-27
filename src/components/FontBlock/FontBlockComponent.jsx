@@ -1,33 +1,23 @@
 import React from 'react';
-
 import FontBlockText from './FontBlockInputText';
+import CustomRangeSliderLabeled from './customRangeSliderLabeled';
 
 export default class FontBlockComponent extends React.Component {
     constructor() {
         super();
         this.state = {
             // Als Zufallswert soll das Fontblock Menü immer sichtbar sein!
-            active: true
+            active: true,
+            primaryFontValues: [50],
+            secondaryFontValues: [50]
         };
-        this.handleToggleMenu = this.handleToggleMenu.bind(this);
+        //this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handleToggleMenu = () => {
         this.setState({
             active: !this.state.active
         });
-    };
-
-    handlePrimaryFontblockNameChange = idx => evt => {
-        const newblocks = this.state.blocks.map((fontblock, sidx) => {
-            if (idx !== sidx) return fontblock;
-            return {
-                ...fontblock,
-                primaryText: evt.target.value
-            };
-        });
-
-        this.setState({ blocks: newblocks });
     };
 
     render() {
@@ -56,10 +46,12 @@ export default class FontBlockComponent extends React.Component {
                     <FontBlockText
                         blockname={'headline'}
                         text={this.props.primaryText}
+                        fontSize={this.state.primaryFontValues}
                     />
                     <FontBlockText
                         blockname={'bodytext'}
                         text={this.props.secondaryText}
+                        fontSize={this.state.secondaryFontValues}
                     />
                 </section>
                 <aside className="fontblock__menu">
@@ -83,7 +75,19 @@ export default class FontBlockComponent extends React.Component {
                                         defaultValue={this.props.primaryText}
                                     />
                                 </div>
-                                <div className="form-group">slider here</div>
+
+                                <div className="form-group">
+                                    <CustomRangeSliderLabeled
+                                        className="custom-rs"
+                                        step={1}
+                                        min={6}
+                                        max={340}
+                                        values={this.state.primaryFontValues}
+                                        handleChangeValues={primaryFontValues =>
+                                            this.setState({ primaryFontValues })
+                                        }
+                                    />
+                                </div>
                             </fieldset>
                             <fieldset className="sep" id="subform__bodytext">
                                 <legend>Body Text</legend>
@@ -97,6 +101,20 @@ export default class FontBlockComponent extends React.Component {
                                                 .handleSecondaryFontblockNameChange
                                         }
                                         defaultValue={this.props.secondaryText}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <CustomRangeSliderLabeled
+                                        className="custom-rs"
+                                        step={1}
+                                        min={6}
+                                        max={340}
+                                        values={this.state.secondaryFontValues}
+                                        handleChangeValues={secondaryFontValues =>
+                                            this.setState({
+                                                secondaryFontValues
+                                            })
+                                        }
                                     />
                                 </div>
                             </fieldset>

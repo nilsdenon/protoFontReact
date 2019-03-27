@@ -4,8 +4,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
-import { Range } from 'react-range';
-
 import './FontBlock.scss';
 
 export default class FontBlock extends React.Component {
@@ -21,8 +19,7 @@ export default class FontBlock extends React.Component {
                     primaryText: quoter().text.replace(/“/g, ''),
                     secondaryText: quoter().from
                 }
-            ],
-            values: [50]
+            ]
         };
     }
 
@@ -74,53 +71,20 @@ export default class FontBlock extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 {this.state.blocks.map((fontblock, idx) => (
-                    <div key={idx}>
-                        <FontBlockComponent
-                            {...this.props}
-                            id={idx}
-                            primaryText={fontblock.primaryText}
-                            secondaryText={fontblock.secondaryText}
-                            handlePrimaryFontblockNameChange={this.handlePrimaryFontblockNameChange(
-                                idx
-                            )}
-                            handleSecondaryFontblockNameChange={this.handleSecondaryFontblockNameChange(
-                                idx
-                            )}
-                        />
-                        <Range
-                            step={0.1}
-                            min={0}
-                            max={100}
-                            values={this.state.values}
-                            onChange={values => this.setState({ values })}
-                            renderTrack={({ props, children }) => (
-                                <div
-                                    {...props}
-                                    style={{
-                                        ...props.style,
-                                        height: '6px',
-                                        width: '100%',
-                                        backgroundColor: '#ccc'
-                                    }}
-                                >
-                                    {children}
-                                </div>
-                            )}
-                            renderThumb={({ props }) => (
-                                <div
-                                    {...props}
-                                    style={{
-                                        ...props.style,
-                                        height: '42px',
-                                        width: '42px',
-                                        backgroundColor: '#999'
-                                    }}
-                                />
-                            )}
-                        />
-                    </div>
+                    <FontBlockComponent
+                        {...this.props}
+                        id={idx}
+                        primaryText={fontblock.primaryText}
+                        secondaryText={fontblock.secondaryText}
+                        handlePrimaryFontblockNameChange={this.handlePrimaryFontblockNameChange(
+                            idx
+                        )}
+                        handleSecondaryFontblockNameChange={this.handleSecondaryFontblockNameChange(
+                            idx
+                        )}
+                    />
                 ))}
 
                 <nav className="nav-bottom-controls">
@@ -141,7 +105,7 @@ export default class FontBlock extends React.Component {
                         </button>
                     )}
                 </nav>
-            </div>
+            </>
         );
     }
 }

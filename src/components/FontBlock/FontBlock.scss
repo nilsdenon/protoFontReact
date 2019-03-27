@@ -19,6 +19,10 @@
     position: relative;
     min-height: 550px;
     overflow: hidden;
+    border-bottom: 1px solid $c-default;
+    &:first-of-type {
+        border-top: 1px solid $c-default;
+    }
     .burger-menu {
         position: absolute;
         right: 0;
@@ -57,7 +61,7 @@
         bottom: 0;
         background: rgba(255, 255, 255, 0.92);
         //height: 100%;
-        //box-shadow: 3px 0px 15px 0px rgba(0, 0, 0, 0.54);
+        box-shadow: 3px 0px 15px 0px rgba(0, 0, 0, 0.54);
     }
     &__nav {
         padding: 2.5rem;
@@ -276,4 +280,9 @@ $dist: $track-w - $thumb-d;
     width: 40px;
     height: 40px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0.2em 0.8em;
+}
+.custom-range-slider {
+    > div:first-child {
+        height: 3px !important;
+    }
 }
