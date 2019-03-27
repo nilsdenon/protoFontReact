@@ -5,6 +5,7 @@ import FontPicker from 'font-picker-react';
 
 import reactCSS from 'reactcss';
 import { SketchPicker } from 'react-color';
+import CustomColorPicker from './components/CustomColorPicker/CustomColorPicker';
 
 export default class FontBlockComponent extends React.Component {
     constructor() {
@@ -57,14 +58,7 @@ export default class FontBlockComponent extends React.Component {
                     height: '14px',
                     borderRadius: '2px'
                 },
-                swatch: {
-                    padding: '5px',
-                    background: '#fff',
-                    borderRadius: '1px',
-                    boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
-                    display: 'inline-block',
-                    cursor: 'pointer'
-                },
+
                 popover: {
                     position: 'absolute',
                     zIndex: '2'
@@ -150,36 +144,24 @@ export default class FontBlockComponent extends React.Component {
                                         })
                                     }
                                 />
-                                <div className="colorPicker">
-                                    <div
-                                        style={styles.swatch}
-                                        onClick={
-                                            this.handleTogglePrimaryColorPicker
-                                        }
-                                    >
-                                        <div style={styles.color} />
-                                    </div>
-                                    {this.state.primaryFontColorPicker && (
-                                        <div style={styles.popover}>
-                                            <div
-                                                style={styles.cover}
-                                                onClick={
-                                                    this
-                                                        .handleClosePrimaryColorPicker
-                                                }
-                                            />
-                                            <SketchPicker
-                                                color={
-                                                    this.state.primaryFontColor
-                                                }
-                                                onChange={
-                                                    this.handlePrimaryFontColor
-                                                }
-                                                disableAlpha
-                                            />
-                                        </div>
-                                    )}
-                                </div>
+                                <CustomColorPicker
+                                    handleTogglePrimaryColorPicker={
+                                        this.handleTogglePrimaryColorPicker
+                                    }
+                                    primaryFontColorPicker={
+                                        this.state.primaryFontColorPicker
+                                    }
+                                    handleClosePrimaryColorPicker={
+                                        this.handleClosePrimaryColorPicker
+                                    }
+                                    primaryFontColor={
+                                        this.state.primaryFontColor
+                                    }
+                                    handlePrimaryFontColor={
+                                        this.handlePrimaryFontColor
+                                    }
+                                    styles={styles}
+                                />
                             </div>
 
                             <CustomRangeSliderLabeled
