@@ -16,15 +16,17 @@
 
 .fontblock {
     display: flex;
+    align-items: center;
+
     position: relative;
-    min-height: 824px;
+    min-height: 100vh;
     overflow: hidden;
-    border-bottom: 1px solid $c-default;
-    &:first-of-type {
+    & + .fontblock {
         border-top: 1px solid $c-default;
     }
     .burger-menu {
         position: absolute;
+        top: 0;
         right: 0;
         z-index: 10;
     }
@@ -63,7 +65,7 @@
         box-shadow: 3px 0px 15px 0px rgba(0, 0, 0, 0.54);
     }
     &__nav {
-        padding: 2rem;
+        padding: 1.5rem;
     }
     div[id^='font-picker'] {
         width: 100%;
@@ -116,6 +118,9 @@ input[type='range'] {
         background: none;
     }
 }
+.form-group {
+    margin-bottom: 0.5rem;
+}
 .form-control[type='text'] {
     background: none;
 }
@@ -132,6 +137,7 @@ input[type='range'] {
     resize: none;
     width: 100%;
     overflow-y: hidden;
+    background: transparent;
     &:focus {
         outline: none;
     }
@@ -148,7 +154,7 @@ fieldset {
     padding: 0;
     margin: 0;
     & + fieldset {
-        margin-top: 2rem;
+        //margin-top: 2rem;
     }
 }
 
@@ -320,6 +326,10 @@ $dist: $track-w - $thumb-d;
         z-index: 2;
         right: 0;
         top: 60px;
+        &.popup {
+            top: inherit;
+            bottom: 60px;
+        }
     }
     &-cover {
         position: fixed;
@@ -338,4 +348,9 @@ $dist: $track-w - $thumb-d;
     background-color: $c-default;
     box-shadow: 0 2px 3px #ccc;
     cursor: pointer;
+}
+.group-align {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

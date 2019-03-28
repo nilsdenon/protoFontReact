@@ -20,7 +20,9 @@ export default class FontBlockComponent extends React.Component {
             primaryFontColorPicker: false,
             primaryFontColor: '#333',
             secondaryFontColor: '#4e4e4e',
-            secondaryFontColorPicker: false
+            secondaryFontColorPicker: false,
+            backgroundColor: '#ccc',
+            backgroundColorPicker: false
         };
         //this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
@@ -52,6 +54,20 @@ export default class FontBlockComponent extends React.Component {
         this.setState({ secondaryFontColor: color.hex });
     };
 
+    handleToggleBackgroundColorPicker = () => {
+        this.setState({
+            backgroundColorPicker: !this.state.backgroundColorPicker
+        });
+    };
+
+    handleCloseBackgroundColorPicker = () => {
+        this.setState({ backgroundColorPicker: false });
+    };
+
+    handleBackgroundColor = color => {
+        this.setState({ backgroundColor: color.hex });
+    };
+
     handleToggleMenu = () => {
         this.setState({
             active: !this.state.active
@@ -62,6 +78,7 @@ export default class FontBlockComponent extends React.Component {
         return (
             <div
                 id={`fontblock-${this.props.id + 1}`}
+                style={{ backgroundColor: this.state.backgroundColor }}
                 className={
                     this.state.active ? 'fontblock is-open' : 'fontblock'
                 }
@@ -253,6 +270,28 @@ export default class FontBlockComponent extends React.Component {
                                             secondaryFontLetterSpacing
                                         })
                                     }
+                                />
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Block Settings</legend>
+                            <div className="group-align">
+                                <label className="form-label">
+                                    Background Color
+                                </label>
+                                <CustomColorPicker
+                                    popup
+                                    bg={this.state.backgroundColor}
+                                    toggle={
+                                        this.handleToggleBackgroundColorPicker
+                                    }
+                                    picker={this.state.backgroundColorPicker}
+                                    close={
+                                        this.handleCloseBackgroundColorPicker
+                                    }
+                                    color={this.state.backgroundColor}
+                                    change={this.handleBackgroundColor}
                                 />
                             </div>
                         </fieldset>

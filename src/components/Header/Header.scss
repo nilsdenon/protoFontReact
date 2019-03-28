@@ -22,6 +22,7 @@
     box-shadow: 11px 11px 0 #333;
     margin: 40px 0 0 20px;
     padding: 10px;
+    opacity: 0.87;
     span {
     }
     &__name {
@@ -48,8 +49,8 @@
     right: 2rem;
     top: 2rem;
     z-index: 1;*/
-    margin: 0 10px 0 0;
-    background: transparent;
+    margin: 20px 20px 0 0;
+    background: rgba(255, 255, 255, 0.65);
     border: none;
     cursor: pointer;
     display: block;
@@ -70,9 +71,9 @@
         position: relative;
     }
     &.is-active {
-        //background-color: rgba(0, 0, 0, 0.92);
+        background-color: rgba(0, 0, 0, 0.65);
         span {
-            background-color: $c-default;
+            background-color: white;
             &:nth-child(2) {
                 width: 75%;
             }

@@ -5,7 +5,7 @@ import './CustomColorPicker.scss';
 
 export default class CustomColorPicker extends React.Component {
     render() {
-        const { bg, toggle, picker, close, color, change } = this.props;
+        const { bg, toggle, picker, close, color, change, popup } = this.props;
 
         const styles = {
             backgroundColor: bg
@@ -15,7 +15,13 @@ export default class CustomColorPicker extends React.Component {
                 <div onClick={toggle} className="color-box" style={styles} />
 
                 {picker && (
-                    <div className="color-picker-popover">
+                    <div
+                        className={
+                            popup
+                                ? 'color-picker-popover popup'
+                                : 'color-picker-popover'
+                        }
+                    >
                         <div className="color-picker-cover" onClick={close} />
                         <SketchPicker
                             color={color}
