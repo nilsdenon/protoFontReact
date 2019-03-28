@@ -21,7 +21,7 @@ export default class FontBlockComponent extends React.Component {
             primaryFontColor: '#333',
             secondaryFontColor: '#4e4e4e',
             secondaryFontColorPicker: false,
-            backgroundColor: '#ccc',
+            backgroundColor: '#e6e6e6',
             backgroundColorPicker: false
         };
         //this.handleToggleMenu = this.handleToggleMenu.bind(this);

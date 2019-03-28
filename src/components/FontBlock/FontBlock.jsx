@@ -2,7 +2,7 @@ import FontBlockComponent from './FontBlockComponent';
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 
 import './FontBlock.scss';
 
@@ -105,6 +105,12 @@ export default class FontBlock extends React.Component {
                             <FontAwesomeIcon icon={faMinus} />
                         </button>
                     )}
+                    <button
+                        type="button"
+                        className=" btn-pdf btn btn-rnd btn-primary"
+                    >
+                        <FontAwesomeIcon icon={faFilePdf} />
+                    </button>
                 </nav>
             </>
         );

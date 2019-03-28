@@ -13,6 +13,7 @@
 
 # misc
 *.code-workspace
+Anleitung.md
 .DS_Store
 .env.local
 .env.development.local
